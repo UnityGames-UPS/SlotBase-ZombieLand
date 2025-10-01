@@ -319,7 +319,6 @@ public class SlotBehaviour : MonoBehaviour
     {
       ToggleButtonGrp(true);
     }
-    m_Gamble_Button.interactable = true;
     IsFreeSpin = false;
   }
 
@@ -823,8 +822,6 @@ public class SlotBehaviour : MonoBehaviour
     {
       if (IsAutoSpin)
       {
-
-
         StopAutoSpin();
         yield return new WaitForSeconds(0.1f);
       }
@@ -835,14 +832,9 @@ public class SlotBehaviour : MonoBehaviour
         {
           StopCoroutine(FreeSpinRoutine);
           FreeSpinRoutine = null;
-
         }
-
       }
-      Debug.Log("here");
       uiManager.FreeSpinProcess((int)SocketManager.ResultData.freeSpin.count);
-
-
     }
     if (!IsAutoSpin && !IsFreeSpin)
     {
@@ -878,13 +870,11 @@ public class SlotBehaviour : MonoBehaviour
 
   private void ActivateGamble()
   {
-    //&& SocketManager.ResultData.payload.winAmount <= SocketManager.GambleLimitf
     if (SocketManager.ResultData.payload.winAmount > 0)
     {
       gambleController.GambleTweeningAnim(true);
       gambleController.toggleDoubleButton(true);
     }
-
   }
 
   internal void DeactivateGamble()

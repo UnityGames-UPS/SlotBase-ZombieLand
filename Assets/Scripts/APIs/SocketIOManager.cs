@@ -435,6 +435,7 @@ public class SocketIOManager : MonoBehaviour
     Root myData = JsonConvert.DeserializeObject<Root>(jsonObject);
 
     string id = myData.id;
+    PlayerData = myData.player;
 
     switch (id)
     {

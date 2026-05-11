@@ -65,6 +65,14 @@ public class UIManager : MonoBehaviour
   [SerializeField]
   private GameObject DisconnectPopup_Object;
 
+  [Header("Error Popup")]
+  [SerializeField]
+  private Button CloseError_Button;
+  [SerializeField] 
+  private TMP_Text Error_Text;
+  [SerializeField]
+  private GameObject ErrorPopup_Object;
+
   [Header("Reconection Popup")]
   [SerializeField]
   private GameObject ReconectingPopup_Object;
@@ -240,6 +248,9 @@ public class UIManager : MonoBehaviour
 
     if (CloseDisconnect_Button) CloseDisconnect_Button.onClick.RemoveAllListeners();
     if (CloseDisconnect_Button) CloseDisconnect_Button.onClick.AddListener(delegate { CallOnExitFunction(); socketManager.closeSocketReactnativeCall(); });
+ 
+    if (CloseError_Button) CloseError_Button.onClick.RemoveAllListeners();
+    if (CloseError_Button) CloseError_Button.onClick.AddListener(delegate { ClosePopup(ErrorPopup_Object); });
 
   }
 
@@ -254,6 +265,11 @@ public class UIManager : MonoBehaviour
     {
       OpenPopup(DisconnectPopup_Object);
     }
+  }
+  internal void ErrorPopup(string message)
+  {
+    Error_Text.text = message;
+    OpenPopup(ErrorPopup_Object);
   }
 
   private void StartFreeSpins(int spins)

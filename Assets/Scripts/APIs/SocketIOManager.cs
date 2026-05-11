@@ -893,6 +893,8 @@ public class Payload
   public double currentWinning { get; set; }
   public Cards cards { get; set; }
   public double balance { get; set; }
+  public bool disconnectPlayer { get; set; }
+  public string message { get; set; }
 
   //bonus
   public double payout { get; set; }

@@ -734,7 +734,36 @@ public class SlotBehaviour : MonoBehaviour
 
     // yield return new WaitForSeconds(1f);
     currentBalance = SocketManager.PlayerData.balance;
+    if(!SocketManager.ResultData.success)
+    {
+      if(SocketManager.ResultData.payload.disconnectPlayer)
+      {
+        uiManager.DisconnectionPopup();
+      }
+      else
+      {
+        uiManager.ErrorPopup(SocketManager.ResultData.payload.message);
+        for (int i = 0; i < numberOfSlots; i++)
+        {
+          yield return StopTweening(5, Slot_Transform[i], i, StopSpinToggle);
+        }
 
+        if (IsAutoSpin)
+        {
+          StopAutoSpin();
+          yield return new WaitForSeconds(0.1f);
+        }   
+        KillAllTweens();
+
+        ScoreTween?.Kill();
+        updateBalance();
+        IsSpinning = false;
+        StopSpin_Button.gameObject.SetActive(false);
+        ToggleButtonGrp(true);
+        yield break;
+
+      }
+    }
     for (int i = 0; i < 3; i++)
     {
       for (int j = 0; j < 5; j++)

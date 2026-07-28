@@ -15,57 +15,46 @@ public class AudioController : MonoBehaviour
     [SerializeField] private AudioSource audioPlayer_Bonus;
     [SerializeField] private SlotBehaviour slotBehaviour;
 
+    private List<AudioSource> allSources;
+    private readonly Dictionary<AudioSource, bool> preFocusMuteState = new Dictionary<AudioSource, bool>();
+    private bool isForceMuted = false;
 
     private void Start()
     {
         if (bg_adudio) bg_adudio.Play();
         audioPlayer_button.clip = clips[clips.Length-1];
         audioSpin_button.clip = clips[clips.Length-2];
+
+        allSources = new List<AudioSource> { bg_adudio, audioPlayer_wl, audioPlayer_button, audioSpin_button, bg_audioBonus, audioPlayer_Bonus };
+    }
+
+    internal void SetMuteAll(bool forceMute)
+    {
+        if (forceMute == isForceMuted) return;
+        isForceMuted = forceMute;
+
+        foreach (var source in allSources)
+        {
+            if (source == null) continue;
+            if (forceMute)
+            {
+                preFocusMuteState[source] = source.mute;
+                source.mute = true;
+            }
+            else
+            {
+                source.mute = preFocusMuteState.TryGetValue(source, out bool prevMuted) ? prevMuted : source.mute;
+            }
+        }
     }
 
     internal void CheckFocusFunction(bool focus, bool IsSpinning)
     {
-        if (!focus)
-        {
-            bg_adudio.Pause();
-            audioPlayer_wl.Pause();
-            audioPlayer_button.Pause();
-        }
-        else
-        {
-            if (!bg_adudio.mute) bg_adudio.UnPause();
-            if (IsSpinning)
-            {
-                if (!audioPlayer_wl.mute) audioPlayer_wl.UnPause();
-            }
-            else
-            {
-                StopWLAaudio();
-            }
-            if (!audioPlayer_button.mute) audioPlayer_button.UnPause();
-
-        }
-    }
-
-    void RecieveReactNativeAudioChanges(bool focus){
-      Debug.Log("React-Native Audio Changes Called");
-      
-      if(focus){
-        if (!bg_adudio.mute) bg_adudio.UnPause();
-        if (slotBehaviour.IsSpinning)
-        {
-            if (!audioPlayer_wl.mute) audioPlayer_wl.UnPause();
-        }
-        else
+        SetMuteAll(!focus);
+        if (focus && !IsSpinning)
         {
             StopWLAaudio();
         }
-        if (!audioPlayer_button.mute) audioPlayer_button.UnPause();
-      }else{
-        bg_adudio.Pause();
-        audioPlayer_wl.Pause();
-        audioPlayer_button.Pause();
-      }
     }
 
     internal void SwitchBGSound(bool isbonus)

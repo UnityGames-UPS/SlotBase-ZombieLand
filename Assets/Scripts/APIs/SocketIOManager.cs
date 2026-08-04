@@ -464,12 +464,15 @@ public class SocketIOManager : MonoBehaviour
 
   private void PopulateSlotSocket(List<string> LineIds)
   {
+    parseStage = "PopulateSlotSocket:shuffleInitialMatrix";
     slotManager.shuffleInitialMatrix();
     for (int i = 0; i < LineIds.Count; i++)
     {
+      parseStage = "PopulateSlotSocket:FetchLines[" + i + "/" + LineIds.Count + "]";
       slotManager.FetchLines(LineIds[i], i);
     }
 
+    parseStage = "PopulateSlotSocket:SetInitialUI";
     slotManager.SetInitialUI();
 
     isLoaded = true;
@@ -511,9 +514,27 @@ public class SocketIOManager : MonoBehaviour
     SendDataWithNamespace("EXIT");
   }
 
+  //Tracks which step of ParseResponse is running so a stripped WebGL stack trace still tells us where it blew up
+  private string parseStage = "none";
+
   private void ParseResponse(string jsonObject)
   {
+    try
+    {
+      ParseResponseInternal(jsonObject);
+    }
+    catch (Exception e)
+    {
+      Debug.LogError("ParseResponse failed at stage [" + parseStage + "] : " + e.GetType().Name + " : " + e.Message);
+      Debug.LogError("ParseResponse stack: " + e.StackTrace);
+      Debug.LogError("ParseResponse payload: " + jsonObject);
+    }
+  }
+
+  private void ParseResponseInternal(string jsonObject)
+  {
     //Debug.Log(jsonObject);
+    parseStage = "deserialize";
     Root myData = JsonConvert.DeserializeObject<Root>(jsonObject);
 
     string id = myData.id;
@@ -523,6 +544,7 @@ public class SocketIOManager : MonoBehaviour
     {
       case "initData":
         {
+          parseStage = "initData:assign";
           InitialData = myData.gameData;
           UIData = myData.uiData;
           PlayerData = myData.player;
@@ -531,16 +553,20 @@ public class SocketIOManager : MonoBehaviour
           if (!SetInit)
           {
             //Debug.Log(jsonObject);
+            parseStage = "initData:ConvertListListIntToListString";
             List<string> LinesString = ConvertListListIntToListString(InitialData.lines);
             //List<string> InitialReels = ConvertListOfListsToStrings(InitialData.Reel);
             //InitialReels = RemoveQuotes(InitialReels);
+            parseStage = "initData:PopulateSlotSocket";
             PopulateSlotSocket(LinesString);
             SetInit = true;
           }
           else
           {
+            parseStage = "initData:RefreshUI";
             RefreshUI();
           }
+          parseStage = "initData:done";
           break;
         }
       case "ResultData":

@@ -3492,7 +3492,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Connection error
+  m_text: DISCONNECTED
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b58887147c19347d3baa330c35e170a7, type: 2}
   m_sharedMaterial: {fileID: 4293545952216918085, guid: b58887147c19347d3baa330c35e170a7, type: 2}
@@ -3519,7 +3519,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 65.5
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3542,7 +3542,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -10487,7 +10487,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Unable to connect to the server.
+  m_text: PLEASE RESTART THE GAME.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b58887147c19347d3baa330c35e170a7, type: 2}
   m_sharedMaterial: {fileID: 4293545952216918085, guid: b58887147c19347d3baa330c35e170a7, type: 2}
@@ -10537,7 +10537,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -16873,7 +16873,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Reconnecting.....
+  m_text: Trying to reconnect...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b58887147c19347d3baa330c35e170a7, type: 2}
   m_sharedMaterial: {fileID: 4293545952216918085, guid: b58887147c19347d3baa330c35e170a7, type: 2}
@@ -16923,7 +16923,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -22653,7 +22653,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Connection error
+  m_text: CONNECTION LOST
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b58887147c19347d3baa330c35e170a7, type: 2}
   m_sharedMaterial: {fileID: 4293545952216918085, guid: b58887147c19347d3baa330c35e170a7, type: 2}
@@ -22680,7 +22680,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 65.5
+  m_fontSize: 70.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -22703,7 +22703,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1

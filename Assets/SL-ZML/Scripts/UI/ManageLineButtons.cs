@@ -17,7 +17,7 @@ public class ManageLineButtons : MonoBehaviour, IPointerEnterHandler,IPointerExi
 	private Sprite Disabled_Button;
 	[SerializeField]
 	private GameObject _ConnectedLine;
-	internal bool isEnabled = true;
+	private bool isEnabled = true;
 
 
 	public void OnPointerEnter(PointerEventData eventData)

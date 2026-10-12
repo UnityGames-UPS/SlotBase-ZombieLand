@@ -56,7 +56,7 @@ public class BonusGame : MonoBehaviour
         //Debug.Log("bonus result in bonus game: ," + JsonConvert.SerializeObject(result));
     }
 
-    internal void resetgame()
+    private void resetgame()
     {
         if (audioManager) audioManager.SwitchBGSound(false);
         slotBehaviour.updateBalance();

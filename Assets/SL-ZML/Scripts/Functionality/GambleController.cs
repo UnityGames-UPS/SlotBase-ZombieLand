@@ -15,7 +15,7 @@ public class GambleController : MonoBehaviour
     [SerializeField] private Button doubleButton; // Button for starting gameble game
     [SerializeField] private SocketIOManager socketManager; // Reference to the SocketIO Manager
     [SerializeField] private AudioController audioController; // Reference to the Audio Controller
-    [SerializeField] internal List<CardFlip> allcards = new List<CardFlip>(); // List of all card flip objects
+    [SerializeField] private List<CardFlip> allcards = new List<CardFlip>(); // List of all card flip objects
     [SerializeField] private TMP_Text winamount; // Text to display the win amount
     [SerializeField] private SlotBehaviour slotController; // Reference to the Slot Controller
     [SerializeField] private Sprite[] HeartSpriteList; // List of heart suit sprites
@@ -42,7 +42,7 @@ public class GambleController : MonoBehaviour
     private Sprite spare1card_Sprite; // Sprite for the first spare card
     private Sprite spare2card_Sprite; // Sprite for the second spare card
     internal bool gambleStart = false; // Indicates if the gamble has started
-    internal bool isResult = false; // Indicates if the result has been received
+    private bool isResult = false; // Indicates if the result has been received
     private bool isAutoSpinOn;
     private string[] cardSuits = new string[] { "Hearts", "Diamonds", "Clubs", "Spades" };
     private cardStruct dealerCard = new cardStruct();
@@ -391,7 +391,7 @@ public class GambleController : MonoBehaviour
     }
 
     // Starts the coroutine for collecting winnings
-    internal void RunOnCollect()
+    private void RunOnCollect()
     {
         StartCoroutine(NewCollectRoutine());
     }

@@ -20,35 +20,35 @@ public class SocketIOManager : MonoBehaviour
   internal Player PlayerData = null;
   internal Root GambleData = null;
   internal Root bonusData = new();
-  internal List<List<int>> LineData = null;
-  internal List<int> BonusData = null;
+  private List<List<int>> LineData = null;
+  private List<int> BonusData = null;
 
   // internal GambleResult gambleData = null;
   // internal Message myMessage = null;
-  internal double GambleLimit = 0;
+  private double GambleLimit = 0;
   //[SerializeField] internal List<string> bonusdata = null;
   internal bool isResultdone = false;
 
   private SocketManager manager;
   private Socket gameSocket;
 
-  [SerializeField] internal JSFunctCalls JSManager;
+  [SerializeField] private JSFunctCalls JSManager;
 
-  [SerializeField] protected string TestSocketURI = "https://sl3l5zz3-5000.inc1.devtunnels.ms/";
-  protected string SocketURI = null;
+  [SerializeField] private string TestSocketURI = "https://sl3l5zz3-5000.inc1.devtunnels.ms/";
+  private string SocketURI = null;
   //protected string SocketURI = "https://6f01c04j-5000.inc1.devtunnels.ms/";
 
   [SerializeField]
   private string testToken;
 
-  protected string gameID = "SL-ZML";
+  private string gameID = "SL-ZML";
   // protected string gameID = "";
   private const int maxReconnectionAttempts = 6;
   private readonly TimeSpan reconnectionDelay = TimeSpan.FromSeconds(10);
 
-  internal bool SetInit = false;
+  private bool SetInit = false;
 
-  protected string nameSpace = "playground"; //BackendChanges
+  private string nameSpace = "playground"; //BackendChanges
 
   private bool isConnected = false; //Back2 Start
   private bool hasEverConnected = false;
@@ -88,7 +88,7 @@ public class SocketIOManager : MonoBehaviour
 
   string myAuth = null;
 
-  internal bool isLoaded = false;
+  private bool isLoaded = false;
 
   private void Awake()
   {

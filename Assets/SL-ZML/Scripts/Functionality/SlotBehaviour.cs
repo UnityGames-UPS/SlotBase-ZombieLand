@@ -81,11 +81,11 @@ public class SlotBehaviour : MonoBehaviour
 
   [Header("Miscellaneous UI")]
   [SerializeField]
-  internal TMP_Text Balance_text;
+  private TMP_Text Balance_text;
   [SerializeField]
   private TMP_Text TotalBet_text;
   [SerializeField]
-  internal TMP_Text TotalWin_text;
+  private TMP_Text TotalWin_text;
   [SerializeField]
   private TMP_Text LineBet_text;
 
@@ -140,25 +140,25 @@ public class SlotBehaviour : MonoBehaviour
   [SerializeField]
   private TMP_Text FSnum_text;
 
-  internal int Lines = 20;
+  private int Lines = 20;
 
   Coroutine AutoSpinRoutine = null;
   private Coroutine FreeSpinRoutine = null;
   Coroutine tweenroutine;
   internal bool IsAutoSpin = false;
-  internal bool IsSpinning = false;
+  private bool IsSpinning = false;
   bool SlotRunning = false;
   private bool IsFreeSpin = false;
   internal bool CheckPopups = false;
   internal int BetCounter = 0;
   private double currentBalance = 0;
-  internal double currentBet = 0;
+  private double currentBet = 0;
   private double currentTotalBet = 0;
   internal bool IsHoldSpin = false;
 
   private bool StopSpinToggle;
   private bool IsTurboOn;
-  internal bool WasAutoSpinOn;
+  private bool WasAutoSpinOn;
   private float SpinDelay = 0.2f;
   private Tween ScoreTween;
 
@@ -167,7 +167,7 @@ public class SlotBehaviour : MonoBehaviour
   private Tweener WinTween;
   private Sprite turboOriginalSprite;
   private int freeSpinsLeft;
-  public static List<List<int>> initialGrid = new List<List<int>>()
+  private static List<List<int>> initialGrid = new List<List<int>>()
     {
         new List<int>() { 8, 12, 7},
         new List<int>() { 12, 8, 7},
@@ -175,7 +175,7 @@ public class SlotBehaviour : MonoBehaviour
         new List<int>() { 12, 8, 7},
         new List<int>() { 8, 12, 7}
     };
-  public static List<List<int>> initialAnimGrid = new List<List<int>>()
+  private static List<List<int>> initialAnimGrid = new List<List<int>>()
     {
         new List<int>() { 10, 10, 10},
         new List<int>() { 10, 10, 10},
@@ -494,7 +494,7 @@ public class SlotBehaviour : MonoBehaviour
   //    PopulateSlot(myvalues, number);
   //}
 
-  internal void LayoutReset(int number)
+  private void LayoutReset(int number)
   {
     if (Slot_Elements[number]) Slot_Elements[number].ignoreLayout = true;
     if (SlotStart_Button) SlotStart_Button.interactable = true;
@@ -894,7 +894,7 @@ public class SlotBehaviour : MonoBehaviour
     //TurboToggle();
   }
 
-  internal void CheckWinPopups()
+  private void CheckWinPopups()
   {
     if (SocketManager.ResultData.payload.winAmount >= currentTotalBet * 5 && SocketManager.ResultData.payload.winAmount < currentTotalBet * 10)
     {
@@ -924,7 +924,7 @@ public class SlotBehaviour : MonoBehaviour
     if (TotalWin_text) TotalWin_text.text = SocketManager.ResultData.payload.winAmount.ToString("f3");
   }
 
-  internal void StartBonus()
+  private void StartBonus()
   {
     _bonusManager.StartBonusGame();
     if (SocketManager.ResultData.freeSpin.count > 0)
